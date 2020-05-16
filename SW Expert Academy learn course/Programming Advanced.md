@@ -284,7 +284,129 @@ for tc in range(int(input())):
 
 ### 분할 정복
 
+#### 5207. [파이썬 S/W 문제해결 구현] 4일차 - 이진 탐색
+
+```python
+def binary_check(lst, num):
+    global cnt
+    l = 0
+    r = N - 1
+    check = -1 # 번갈아 탐색하는 지 확인하기 위한 변수 (오른쪽 구간: 1, 왼쪽 구간: 2)
+    while l <= r:
+        mid = (r + l)//2
+        if num == lst[mid]:
+            cnt += 1
+            return
+        elif num > lst[mid]: # 오른쪽 구간
+            if check == 1:
+                return
+            l = mid + 1
+            check = 1
+        elif num < lst[mid]: # 왼쪽 구간
+            if check == 2:
+                return
+            r = mid - 1
+            check = 2
+
+
+for tc in range(int(input())):
+    N, M = map(int, input().split())
+    A = sorted(list(map(int, input().split())))
+    B = list(map(int, input().split())) # A에 있는지 확인할 숫자
+    cnt = 0
+    for b in range(M):
+        binary_check(A, B[b])
+    print('#{} {}'.format(tc+1, cnt))
+```
+
+
+
+
+
 ### 백트래킹
+
+#### 5209. [파이썬 S/W 문제해결 구현] 5일차 - 최소 생산 비용
+
+```python
+def backtrack(idx, price):
+    global N, f_price
+    if idx == N:
+        if price < f_price:
+            f_price = price
+        return
+    if price > f_price: # 가지치기
+        return
+    for i in range(N):
+        if not col[i]: 
+            col[i] = 1
+            backtrack(idx+1, price + arr[i][idx])
+            col[i] = 0
+
+for tc in range(int(input())):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    col = [0] * N
+    f_price = 9999999 # [주의] 0으로 두면 안된다!!
+    backtrack(0, 0)
+    print('#{} {}'.format(tc+1, f_price))
+```
+
+```python
+# 순열 이용
+
+def backtrack(price, selected, idx, N):
+    global f_price
+    if idx == N:
+        if price < f_price:
+            f_price = price
+        return
+    # 사용가능한 선택지 후보군에 대하여 다음단계로 진행
+    if price > f_price:
+        return
+    for i in range(N):
+        if not selected[i]:
+            selected[i] = 1
+            backtrack(price + arr[idx][i], selected, idx + 1, N)
+            selected[i] = 0
+
+for tc in range(int(input())):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    col = [0] * N
+    f_price = 9999999 # [주의] 0으로 두면 안된다!!
+    backtrack(0, [0]*N, 0, N)
+    print('#{} {}'.format(tc+1, f_price))
+```
+
+### 5208. [파이썬 S/W 문제해결 구현] 5일차 - 전기버스2
+
+```python
+def backtrack(idx, remain, cnt):
+    global f_cnt, N
+    remain -= 1 # 다음 정류장에 도착하면 배터리 감소
+    if idx == N:
+        if cnt < f_cnt:
+            f_cnt = cnt
+        return
+    # 가지치기
+    if cnt > f_cnt:
+        return
+    # 배터리를 교환하고 다음 정류장으로 진행
+    backtrack(idx+1, stops[idx], cnt+1)
+    # 배터리를 교환하지 않고 다음 정류장으로 진행
+    if remain > 0:
+        backtrack(idx+1, remain, cnt)
+
+
+for tc in range(int(input())):
+    stops = list(map(int, input().split()))
+    N = stops[0] # 정류장의 개수
+    f_cnt = 99999999
+    backtrack(2, stops[1], 0)
+    print('#{} {}'.format(tc+1, f_cnt))
+```
+
+
 
 ### 그래프의 기본과 탐색
 
