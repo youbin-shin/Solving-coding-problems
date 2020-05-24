@@ -378,6 +378,10 @@ for tc in range(int(input())):
     print('#{} {}'.format(tc+1, f_price))
 ```
 
+![image-20200521124421421](C:\Users\youbi\AppData\Roaming\Typora\typora-user-images\image-20200521124421421.png)
+
+nqueen 처럼
+
 ### 5208. [파이썬 S/W 문제해결 구현] 5일차 - 전기버스2
 
 ```python
@@ -410,7 +414,138 @@ for tc in range(int(input())):
 
 ### 그래프의 기본과 탐색
 
+#### 5248. [파이썬 S/W 문제해결 구현] 6일차 - 그룹 나누기
+
+```python
+def make_set(x):
+    p[x] = x
+
+
+def find_set(x):
+    if p[x] == x: return x
+    else:
+        p[x] = find_set(p[x])
+        return p[x]
+
+
+def union(x, y):
+    px = find_set(y) # x의 대표자
+    py = find_set(x) # y의 대표자
+    if rank[px] > rank[py]:
+        p[py] = px
+    else:
+        p[px] = py
+        if rank[px] == rank[py]:
+            rank[py] += 1
+
+
+for tc in range(int(input())):
+    N, M = map(int, input().split())
+    Mlst = list(map(int, input().split()))
+    p = [0] * (N+1)
+    rank = [0] * (N + 1)
+    for i in range(1, N+1):
+        make_set(i)
+    for j in range(M):
+        union(Mlst[2*j],Mlst[2*j+1])
+
+    result = []
+    for i in range(len(p)):
+        result.append(find_set(i))
+    print('#{} {}'.format(tc+1,len(set(result)) - 1))
+```
+
+![image-20200522131014828](C:\Users\youbi\AppData\Roaming\Typora\typora-user-images\image-20200522131014828.png)
+
 ### 그래프의 최소 비용 문제
+
+#### 5249. [파이썬 S/W 문제해결 구현] 7일차 - 최소 신장 트리
+
+```python
+import heapq
+
+for tc in range(int(input())):
+    V, E = map(int, input().split())
+    adj = {i: [] for i in range(V+1)}  # 인접리스트
+    for i in range(E):
+        s, e, c = map(int, input().split())  # 시작정점, 끝정점, 가중치
+        adj[s].append([e, c])
+        adj[e].append([s, c])
+
+    # key, mst, 우선순위 큐 준비
+    INF = float('inf')
+    key = [INF] * (V+1)
+    mst = [False] * (V+1)
+    pq = []
+
+    # 시작점 선택 : 0번 선택
+    key[0] = 0
+    # 큐에 시작정점을 넣는다! (key, 정점인덱스)
+    # 우선순위 큐 -> 이진힙 -> library : heapq
+    heapq.heappush(pq, (0, 0))  # 우선순위 큐(원소의 첫번재 요소) : key를 우선순위로
+    result = 0
+    while pq:
+        # 최소값 찾기
+        k, node = heapq.heappop(pq)  # 가장 작은값 꺼낸다. (key, u)
+        if mst[node]: continue  # old 한 정보면 스킵
+        # mst로 선택
+        mst[node] = True
+        result += k
+        # key 값을 갱신 => key 배열/큐
+        for dest, wt in adj[node]:  # dest 가고자하는 곳, wt 가중치
+            if not mst[dest] and key[dest] > wt:
+                key[dest] = wt
+                # 큐 갱신 => 새로운 (key, 정점) 삽입 (필요없는 원소는 스킵)
+                heapq.heappush(pq, (key[dest], dest))
+
+    print('#{} {}'.format(tc+1, result))
+```
+
+![image-20200522123304273](C:\Users\youbi\AppData\Roaming\Typora\typora-user-images\image-20200522123304273.png)
+
+#### 5250. [파이썬 S/W 문제해결 구현] 7일차 - 최소 비용
+
+```python
+
+```
+
+#### 5251. [파이썬 S/W 문제해결 구현] 7일차 - 최소 이동 거리
+
+```python
+for tc in range(int(input())):
+
+    V, E = map(int, input().split())
+    adj = {i: [] for i in range(V+1)}  # 인접리스트
+    for i in range(E):
+        s, e, c = map(int, input().split())
+        adj[s].append([e, c])  # 단방향이기에
+
+    INF = float('inf')
+    dist = [INF] * (V+1)
+    selected = [False] * (V+1)
+
+    dist[0] = 0
+    cnt = 0
+    while cnt < V+1:
+        # dist 가 최소인 정점 찾기
+        min = INF
+        u = -1
+        for i in range(V+1):
+            if not selected[i] and dist[i] < min:
+                min = dist[i]
+                u = i
+        # 결정
+        selected[u] = True
+        cnt += 1
+        # 간선완화
+        for w, cost in adj[u]:  # 도착정점 w, 가중치 cost
+            if dist[w] > dist[u] + cost:
+                dist[w] = dist[u] + cost
+
+    print('#{} {}'.format(tc+1, dist[-1]))
+```
+
+
 
 ### 문자열 탐색
 
