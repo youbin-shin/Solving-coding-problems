@@ -4,6 +4,35 @@
 
 #### 4828. [파이썬 S/W 문제해결 기본] 1일차 - min max
 
+- solution 1 함수 이용
+
+```python
+def maxmin(lst):
+    maxvalue = minvalue =lst[0]
+    for i in range(1, len(lst)):
+        if maxvalue < lst[i]:
+            maxvalue = lst[i]
+        if minvalue > lst[i]:
+            minvalue = lst[i]
+
+    return maxvalue - minvalue
+
+tc = int(input())
+
+for i in range(1, tc+1):
+    # 입력
+    num = int(input())
+    lst = list(map(int, input().split()))
+
+    # 계산
+    result = maxmin(lst)
+
+    # 출력
+    print('#{} {}'.format(i, result))
+```
+
+- solution 2
+
 ```python
 T = int(input())
 
@@ -22,8 +51,9 @@ for t in range(T):
 
 #### 4835. [파이썬 S/W 문제해결 기본] 1일차 - 구간합
 
+- solution 1
+
 ```python
-# solution 1
 for t in range(int(input())):
     N, M = map(int, input().split())
     nums = list(map(int, input().split()))
@@ -42,8 +72,9 @@ for t in range(int(input())):
     print('#{} {}'.format(t+1, Max-Min))
 ```
 
+- solution 2 슬라이싱 이용
+
 ```python
-# solution 2 _ 슬라이싱 이용
 test_case = int(input())
 
 for i in range(test_case):
@@ -59,6 +90,8 @@ for i in range(test_case):
 ```
 
 #### 4834. [파이썬 S/W 문제해결 기본] 1일차 - 숫자 카드
+
+- solution 1
 
 ```python
 for t in range(int(input())):
@@ -76,7 +109,32 @@ for t in range(int(input())):
     print('#{} {} {}'.format(t+1, idx, max(cardcnt)))
 ```
 
+- solution 2
+
+```python
+test_case = int(input())
+
+for j in range(1, (test_case)+1):
+    # 입력
+    N = int(input())
+    ai_str = str(input())
+    ai_lst = []
+    for i in ai_str:
+        ai_lst.append(i)
+    bestmax = max(ai_lst)
+    # 계산
+    for x in set(ai_lst):
+        current = ai_lst.count(x)
+        if ai_lst.count(bestmax) < current:
+            bestmax = x
+
+    # 출력
+    print(f'#{j} {bestmax} {ai_lst.count(bestmax)}')
+```
+
 #### 4831. [파이썬 S/W 문제해결 기본] 1일차 - 전기버스
+
+- solution 1
 
 ```python
 for t in range(1, int(input()) + 1):
@@ -105,6 +163,47 @@ for t in range(1, int(input()) + 1):
 
     print('#{} {}'.format(t, cnt))
 ```
+
+- solution 2
+
+```python
+test_case = int(input())
+
+for tc in range(1, (test_case)+1):
+    # 입력, 기본설정
+    K, N, M = input().split()
+    batterystation = list(map(int, input().split()))
+    K = int(K)
+    N = int(N) 
+    M = int(M)
+    station = list(range(N+1))
+    count = 0
+    bus = 0
+
+    # 계산
+    for i in range(N+1):
+        bus += K
+        if bus >= N:
+            break
+        if bus in batterystation:
+            count += 1
+        else:
+            for j in range(1,K):
+                bus -= 1
+                if bus in batterystation:
+                    count += 1
+                    break
+
+    for i in range(len(batterystation)-1):
+        if batterystation[i+1] - batterystation[i] > K:
+            count = 0
+            break
+
+    # 출력
+    print(f'#{tc} {count}')
+```
+
+---
 
 ### LIST2
 
@@ -196,6 +295,8 @@ for t in range(tc):
 
     print('#{} {}'.format(t+1, cnt))
 ```
+
+---
 
 ### String
 
@@ -306,6 +407,8 @@ for t in range(int(input())):
             ans = max(ans, cnt[ord(ch)])
     print('#{} {}'.format(t+1, ans))
 ```
+
+---
 
 ### Stack1
 
@@ -443,6 +546,8 @@ for tc in range(testcase):
     print('#{} {}'.format(tc+1, cnt))
 ```
 
+---
+
 ### Stack2
 
 #### 4874. [파이썬 S/W 문제해결 기본] 5일차 - Forth
@@ -551,6 +656,8 @@ for t in range(T):
 ```python
 
 ```
+
+---
 
 ### 큐 (Queue)
 
@@ -715,6 +822,8 @@ for tc in range(int(input())):
 ![image-20200403173403527](C:\Users\youbi\AppData\Roaming\Typora\typora-user-images\image-20200403173403527.png)
 
 ![image-20200403173454892](C:\Users\youbi\AppData\Roaming\Typora\typora-user-images\image-20200403173454892.png)
+
+---
 
 ### Linked List
 
@@ -971,7 +1080,7 @@ for tc in range(int(input())):
     print('#{} {}'.format(tc+1, result))
 ```
 
-### 5110. [파이썬 S/W 문제해결 기본] 7일차 - 수열 합치기
+#### 5110. [파이썬 S/W 문제해결 기본] 7일차 - 수열 합치기
 
 ```python
 # double linked list
@@ -1163,6 +1272,8 @@ for t in range(1, tc + 1):
     result = ' '.join(map(str, result))
     print('#{} {}'.format(t, result))
 ```
+
+---
 
 ### Tree
 
