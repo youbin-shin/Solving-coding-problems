@@ -48,7 +48,7 @@ def cal(n, N, V, op1, op2, op3, op4):
     if n == N:
         if V < minV:
             minV = V
-        if V > maxV:
+        if V > maxV: # elif 사용하면 X
             maxV = V
     else:
         if op1 > 0:
@@ -117,6 +117,24 @@ for tc in range(int(input())):
 
     result.sort(reverse=True)
     print('#{} {}'.format(tc+1, result[K-1]))
+```
+
+```python
+# sol2-2 : int 성질 이용
+for tc in range(int(input())):
+    N, K = map(int, input().split())
+    codes = list(map(str, input()))
+    line = N//4
+    numbers = []
+    for i in range(line):
+        for j in range(0, N, line):
+            numlst = codes[j:j+line] # 한 변의 숫자들을 numlst에 저장하기
+            num = int(''.join(numlst), 16) # 리스트를 16진수로 바꾸기
+            if num not in numbers:
+                numbers.append(num)
+        codes.append(codes.pop(0))
+    numbers.sort(reverse=True) # 내림차순으로 정리하기
+    print('#{} {}'.format(tc+1, numbers[K-1]))
 ```
 
 ### 1953. [모의 SW 역량테스트\] 탈주범 검거
