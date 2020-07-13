@@ -4,9 +4,9 @@
 
 2628 종이 자르기 2116 주사위 쌓기 2304 창고 다각형 2559 수열 2578 빙고 2477 참외밭 2527 직사각형 10157 자리배정 10158 개미 10163 색종이 13300 방 배정 14696 딱지놀이 2309 일곱 난장이 2605 줄 세우기 2563 색종이 2564 경비원 2491 수열
 
-```python
-# 2669  직사각형 네개의 합집합의 면적 구하기
+### 2669  직사각형 네개의 합집합의 면적 구하기
 
+```python
 plane = [[0 for _ in range(101)] for _ in range(101)]
 for t in range(4):
     x1, y1, x2, y2 = map(int, input().split())
@@ -22,9 +22,9 @@ for i in range(101):
 print(area)
 ```
 
-```python
-# 2635 수 이어가기
+### 2635 수 이어가기
 
+```python
 def seqence(f_num, s_num):
     result = [f_num, s_num]
     plus = f_num - s_num
@@ -98,56 +98,5 @@ for i in range(st_num):
 
 for i in range(1, switch_num+1):
     print(switch_lst[i], end=' ')
-
-
-
-
 ```
 
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
