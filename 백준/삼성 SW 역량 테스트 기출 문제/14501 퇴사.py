@@ -17,3 +17,21 @@ table = [list(map(int, input().split())) for _ in range(N)]
 final_value = 0
 work(0, 0)
 print(final_value)
+
+
+# 다른 풀이 (시간더빠름)
+# def work(day, income):
+#     global final_income
+#     if day < N:
+#         work(day + consulting[day][0], income + consulting[day][1]) # 상담할 경우
+#         work(day + 1, income) # 상담안할 경우
+#     if day <= N:
+#         if final_income < income:
+#             final_income = income
+
+
+# N = int(input())
+# consulting = [list(map(int, input().split())) for _ in range(N)]
+# final_income = 0
+# work(0, 0)
+# print(final_income)
