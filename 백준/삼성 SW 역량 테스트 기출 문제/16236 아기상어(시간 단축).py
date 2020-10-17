@@ -34,8 +34,6 @@ def find(o, sy, sx, ssize):
     return
 
 
-
-
 N = int(input())
 time = 0
 cnt = 0
