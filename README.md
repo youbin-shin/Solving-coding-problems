@@ -27,5 +27,6 @@
 - 2019 카카오 개발자 겨울 인턴십
 - 2020 KAKAO BLIND RECRUITMENT
 - 2020 카카오 인턴십
-- summer & winter coding
-- 월간 코드 챌린지
+- summer & winter coding (~2018)
+- summer & winter coding (2019)
+- 월간 코드 챌린지 시즌 1
