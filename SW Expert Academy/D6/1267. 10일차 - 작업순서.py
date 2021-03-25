@@ -1,8 +1,3 @@
-# D6
-
-### 1267. [S/W 문제해결 응용] 10일차 - 작업순서
-
-```python
 for tc in range(10):
     vertex, line = map(int, input().split())
     G = [[0]*(vertex+1) for _ in range(vertex+1)]
@@ -19,7 +14,6 @@ for tc in range(10):
             stack.append(i)
             visited[i] = 1
 
-    # print(stack)
     result = []
     while len(stack):
 
@@ -36,7 +30,3 @@ for tc in range(10):
     for i in range(len(result)):
         print(result[i], end =' ')
     print()
-```
-
-
-
