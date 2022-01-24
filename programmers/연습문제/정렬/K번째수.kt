@@ -19,7 +19,7 @@ fun solution(array: IntArray, commands: Array<IntArray>): IntArray {
 }
 
 // solution 2 (개선 코드)
-fun solution(array: IntArray, commands: Array<IntArray>): IntArray {
+fun solution2(array: IntArray, commands: Array<IntArray>): IntArray {
     return commands.map { command ->
         array.slice(command[0] - 1..command[1] - 1).sorted()[command[2] - 1]
     }.toIntArray()
