@@ -6,6 +6,8 @@
 
 ## SW Expert Academy
 
+[SW Expert Academy]: https://swexpertacademy.com/main/main.do
+
 - Learn course 문제 풀이
 
 - D1, D2, D3, ~ 문제 풀이
@@ -14,11 +16,17 @@
 
 ## Baekjoon Online Judge
 
-- 삼성 SW 역량 테스트 기출 문제
+- [삼성 SW 역량 테스트 기출 문제]: https://www.acmicpc.net/workbook/view/1152
+
+  
 
 
 
 ## programmers
+
+[programmers]: https://programmers.co.kr/learn/challenges
+
+
 
 - 연습문제
 - 2017 팁스타운
@@ -30,3 +38,4 @@
 - summer & winter coding (~2018)
 - summer & winter coding (2019)
 - 월간 코드 챌린지 시즌 1
+- ...
